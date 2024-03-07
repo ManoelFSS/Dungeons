@@ -12,6 +12,7 @@ body {
 
  .heroi {
     width: 250px;
+    height: 500px;
     background-color: #0000007e;
     border-radius: 10px;
     cursor: pointer;
@@ -19,6 +20,7 @@ body {
     padding: 20px;
     transition: all 0.3s;
     border: solid 3px #3cff0000;
+    position: relative;
 }
 
 .heroi:hover, .hehoi_select{
@@ -28,13 +30,25 @@ body {
 
 .heroi img {
     height: 250px;
-    width: 100%;
+    width: 200px;
     border-radius: 10px;
-
+    animation:animacard 0.7s infinite alternate;
+    position: relative;
+    margin-top: 10px
 }
 
  .heroi:nth-child(3) img{
-    width: 140%;
+    width:300px;
+}
+
+@keyframes animacard {
+    0%{
+        top: -2px;
+    }
+   
+   100%{
+       top: 2px;
+    }
 }
 
 .area_xp{
@@ -42,6 +56,7 @@ body {
     gap: 10px;
     margin-top: 10px;
 }
+
 .area_xp span {
     color: rgb(60, 255, 0);
 }
