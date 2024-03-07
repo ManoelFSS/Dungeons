@@ -1,0 +1,141 @@
+body {
+    background: #000 url("../images/cinzas.jpg") no-repeat center / cover;
+}
+
+.container_horois {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    padding: 20px;
+    transition: all 1s ease;
+}
+ .modoJogo {
+    justify-content: flex-start !important;
+ }
+
+ .heroi {
+    width: 250px;
+    height: 500px;
+    background-color: #0000007e;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    padding: 20px;
+    transition: all 0.3s;
+    border: solid 3px #3cff0000;
+    position: relative;
+}
+
+.heroi:hover, .hehoi_select{
+    border: solid 3px #3cff00;
+    transform: scale(1.1);
+}
+
+.heroi img {
+    height: 250px;
+    width: 200px;
+    border-radius: 10px;
+    animation:animacard 0.7s infinite alternate;
+    position: relative;
+    margin-top: 10px
+}
+
+ .heroi:nth-child(3) img{
+    width:300px;
+}
+
+@keyframes animacard {
+    0%{
+        top: -2px;
+    }
+   
+   100%{
+       top: 2px;
+    }
+}
+
+.area_xp{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.area_xp span {
+    color: rgb(60, 255, 0);
+}
+
+.card_start_jogo {
+    height: auto;
+    padding: 30px 0px;
+    background-color: #0000005d;
+    text-align: center;
+    color: #fff;
+}
+
+.card_start_jogo  h2 {
+    color: red;
+}
+
+.card_start_jogo  h3 {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    padding: 20px;
+}
+
+.card_start_jogo div {
+    display: flex;
+    gap: 20px;
+}
+
+.card_start_jogo button {
+    padding: 5px 10px;
+    border: none;
+    font-weight: 800;
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+   text-transform: uppercase;
+   cursor: pointer;
+
+}
+
+.legenda {
+    width: 800px;
+    color: #fff;
+}
+
+
+.paragrafo {
+    display: flex;
+    flex-direction: column;
+}
+
+.btns_ataques{
+    display:none;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.btns_ataques button {
+    padding: 10px 20px;
+    background-color: red;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.btns_ataques button:hover {
+  background-color: #3cff00;
+  color: #000;
+}
+
+.status_ataque{
+    color: red;
+    font-size: 25px;
+    font-weight: bolder;
+}

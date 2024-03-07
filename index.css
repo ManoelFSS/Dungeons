@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100Vh;
-    background: #000 url("./images/cidade.gif") no-repeat center / cover;
+    background: #000 url("./assets/images/cidade.gif") no-repeat center / cover;
 }
 
 body h1 {
@@ -91,7 +91,7 @@ body h1 {
     display:inline-block;
     height: 20px;
     width: 40px;
-    background: url("./images/seta.gif") no-repeat center / cover;
+    background: url("./assets/images/seta.gif") no-repeat center / cover;
     transform: rotate(180deg);
     margin-right: 20px;
     transition: all 0.3s;
