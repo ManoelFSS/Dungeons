@@ -112,10 +112,12 @@ body {
 
 .btns_ataques{
     display:none;
+    height: 200px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
+    background-color: #000000bf;
 }
 
 .btns_ataques button {
@@ -138,4 +140,24 @@ body {
     color: red;
     font-size: 25px;
     font-weight: bolder;
+}
+
+.vida_vilao, .vida_heori {
+    font-size: 20px;
+    color: #3cff00;
+    font-weight: bolder;
+    padding: 10px 20px ;
+}
+
+.area_ataque{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.foca_de_ataque{
+    font-size: 25px;
+    font-weight: bolder;
+    color: #fff;
 }

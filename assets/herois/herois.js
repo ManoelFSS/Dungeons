@@ -240,12 +240,15 @@ btn_heroi.addEventListener("click", ()=>{
 
     switch(nivelDeAtaque){
         case 1: esqueletos[0].vida = esqueletos[0].vida - (herois[0].dano * 1);
+            document.querySelector(".foca_de_ataque").textContent = `Ataque de nivel 01 Força ${herois[0].dano * 1} `
             document.querySelector(".status_ataque").innerHTML = "E a vez do vilão Atacar !"
             break
         case 2: esqueletos[0].vida = esqueletos[0].vida - ( herois[0].dano * 1.5);
+            document.querySelector(".foca_de_ataque").textContent = `Ataque de nivel 02 Força ${herois[0].dano * 1.5} `
             document.querySelector(".status_ataque").innerHTML = "E a vez do vilão Atacar !"
             break 
         case 3:esqueletos[0].vida = esqueletos[0].vida - ( herois[0].dano * 2);
+            document.querySelector(".foca_de_ataque").textContent = `Ataque de nivel 03 Força ${herois[0].dano * 2} `
             document.querySelector(".status_ataque").innerHTML = "E a vez do vilão Atacar!"
         break
         default: document.querySelector(".status_ataque").innerHTML = "O vilão defendeu seu Ataque !!"
@@ -278,7 +281,31 @@ btn_heroi.addEventListener("click", ()=>{
         container_herois.innerHTML+= html
     }else{
         hendleCards()
+        document.querySelector(".foca_de_ataque").textContent = `Parabéns ${herois[0].nome}!...  Você Venceu Essa Batalha contra o ${esqueletos[0].nome} `
+        document.querySelector(".btns_ataques").style.display = "none"
+        card_start_jogo.style.display = "flex"
+       
+        card_start_jogo.innerHTML = `
+            <h2> Olá, ${herois[0].nome}</h2>
+            <div class="paragrafo">
+                <p class="legenda">
+                    Finalmente o Exército foi conquistado! Uma sesação de paz invade cada centímetro da câmara... Num piscar de olhos você está em uma planície muito peculiar e ao mesmo tempo familiar também... você percebe que está diante de três portas...
+                </p>
+            </div>
+            <h3>O que você quer fazer ?</h3>
+            <div>
+                <button class="entrarNaCaveerna">Entrar na Caveerna</button>
+                  OU
+                <button class="explorar">Explorar</button>
+            </div>
+        ` 
+        
     }
+    
+    document.querySelector(".vida_vilao").textContent = `${esqueletos[0].vida}`
+    document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
+    document.querySelector(".entrarNaCaveerna").textContent = "Porta (A)"
+    document.querySelector(".explorar").textContent = "Porta (B)"
         
 })
 
@@ -317,7 +344,8 @@ btn_vilao.addEventListener("click", ()=>{
     }else{
         document.querySelector(".status_ataque").innerHTML = "O Heroi defendeu o Ataque !"
     }
-    
+    document.querySelector(".vida_vilao").textContent = ` ${esqueletos[0].vida}`
+    document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
 })
 
 
