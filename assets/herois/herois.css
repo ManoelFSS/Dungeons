@@ -137,9 +137,10 @@ body {
 }
 
 .status_ataque{
-    color: red;
+    color: rgb(255, 255, 255);
     font-size: 25px;
     font-weight: bolder;
+
 }
 
 .vida_vilao, .vida_heori {
@@ -155,9 +156,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+   
 }
 .foca_de_ataque{
     font-size: 25px;
     font-weight: bolder;
     color: #fff;
+    width: 100%;
 }
