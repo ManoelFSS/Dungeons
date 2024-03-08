@@ -139,6 +139,7 @@ let  btn_entrarNaCaveerna = ""
 
 
 jogar_btn.addEventListener("click", ()=> {
+    IdHeroi !== null ? "" : alert("Por favor selecione um Heroi para Jogar !")
     if(IdHeroi !== null){
         // criando html com templay string
         card_start_jogo.innerHTML = `
