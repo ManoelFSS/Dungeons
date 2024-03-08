@@ -102,6 +102,8 @@ body {
 .legenda {
     width: 800px;
     color: #fff;
+    font-size: 20px;
+    padding: 10px;
 }
 
 
@@ -160,4 +162,20 @@ body {
     font-size: 25px;
     font-weight: bolder;
     color: #fff;
+}
+
+.reload {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reload h3 {
+    font-size: 24px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.reload button {
+    padding: 10px 20px;
 }

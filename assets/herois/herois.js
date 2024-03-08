@@ -234,9 +234,7 @@ jogar_btn.addEventListener("click", ()=> {
             container_herois.style.justifyContent = "space-between"
 
             document.querySelector(".btns_ataques").style.display = "flex" // mostrando a area dos btns do heroi e vilao
-
         }
-
     })
 
     // btn açoes
@@ -274,7 +272,7 @@ btn_heroi.addEventListener("click", ()=>{
     }
 
     // condiçao que renderiza o vilao em quanto os pontos de vida for maior que 0
-    if(esqueletos[0].vida > 0){
+    if(esqueletos[0].vida > 0 ){
 
         const html = `
             <div class="heroi">
@@ -300,36 +298,130 @@ btn_heroi.addEventListener("click", ()=>{
         hendleCards()// atualiza e renderiza  o heroi e o vilao na tela com as mudanças ocorridas
         container_herois.innerHTML+= html // add o heroi e o vilao ja com os dados atualizado na tela 
     }else{
-        // else caso o vilao nao tenha mais pontos de vida maior que 0
-        hendleCards()
-        // add uma msg de vencedor
-        document.querySelector(".foca_de_ataque").textContent = `Parabéns ${herois[0].nome}!...  Você Venceu Essa Batalha contra o ${esqueletos[0].nome} `
-        document.querySelector(".btns_ataques").style.display = "none"
-        card_start_jogo.style.display = "flex"
+
+        if(esqueletos[0].nome === "Esqueletrons"){
+                 // else caso o vilao nao tenha mais pontos de vida maior que 0
+            hendleCards()
+
+            document.querySelector(".btns_ataques").style.display = "none"
+            document.querySelector(".foca_de_ataque").style.display = "none"
+
+            card_start_jogo.style.display = "flex"
+        
+            card_start_jogo.innerHTML = `
+                <h2> Olá, ${herois[0].nome}</h2>
+                <div class="paragrafo">
+                    <p class="legenda">
+                        Finalmente o Exército foi conquistado! Uma sesação de paz invade cada centímetro da câmara... Num piscar de olhos você está em uma planície muito peculiar e ao mesmo tempo familiar também... você percebe que está diante de duas portas...
+                    </p>
+                </div>
+                <h3>O que você quer fazer ?</h3>
+                <div>
+                    <button class="entrarNaCaveerna">Entrar na Caveerna</button>
+                    
+                    <button class="explorar">Explorar</button>
+                </div>
+            ` 
+            document.querySelector(".entrarNaCaveerna").textContent = "Porta (A)"
+            document.querySelector(".explorar").textContent = "Porta (B)"
+            body.style.background = `#000 url("../images/portoes.jpg") no-repeat center / cover`
+
+        }else if(esqueletos[0].nome === "Rei Caveira"){
+            hendleCards()
+            // add uma msg de vencedor
        
-        card_start_jogo.innerHTML = `
-            <h2> Olá, ${herois[0].nome}</h2>
-            <div class="paragrafo">
-                <p class="legenda">
-                    Finalmente o Exército foi conquistado! Uma sesação de paz invade cada centímetro da câmara... Num piscar de olhos você está em uma planície muito peculiar e ao mesmo tempo familiar também... você percebe que está diante de duas portas...
-                </p>
-            </div>
-            <h3>O que você quer fazer ?</h3>
-            <div>
-                <button class="entrarNaCaveerna">Entrar na Caveerna</button>
-                  OU
-                <button class="explorar">Explorar</button>
-            </div>
-        ` 
-        body.style.background = `#000 url("../images/portoes.jpg") no-repeat center / cover`
+            document.querySelector(".btns_ataques").style.display = "none"
+            document.querySelector(".foca_de_ataque").style.display = "none"
+        
+            card_start_jogo.style.display = "flex"
+        
+            card_start_jogo.innerHTML = `
+                <h2> Olá, ${herois[0].nome}</h2>
+                <div class="paragrafo">
+                    <p class="legenda">
+                         O ${esqueletos[0].nome} não mais nos assombrará! É hora de voltar a vila e comemorar com o povo...
+                    </p>
+                </div>
+                <div class="reload">
+                    <h3>Fim De Jogo</h3>
+                    <a  href="../herois/herois.html"><button class="entrarNaCaveerna">Jogar Novamente</button></button></a>
+                </div>
+            ` 
+            body.style.background = `#000 url("../images/reino.avif") no-repeat center / cover`
+            
+        }
+       
     }
     // add infor de status de vidas do heroi e vilao
     document.querySelector(".vida_vilao").textContent = `${esqueletos[0].vida}`
     document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
-
-    document.querySelector(".entrarNaCaveerna").textContent = "Porta (A)"
-    document.querySelector(".explorar").textContent = "Porta (B)"
     
+    const entrarNaCaveerna = document.querySelector(".entrarNaCaveerna")
+
+    // btns açoes dos portoes (a) e (b)
+    entrarNaCaveerna.addEventListener("click", ()=>{
+        document.querySelector(".legenda").textContent = `
+         Você escolhe a Porta de Ouro. Atrás dela você encontra muito ouro, cristais, etc... você começa a imaginar toda a glória e poder que poderá onter com este tesouro praticamente infinito. Assim que você toca a primeira moeda a seu alncace uma voz grave e ecoante chama seu nome... "Então você prefere assim? Acha que seria fácil?"... o <nome do inimigo> suege com uma aura de poder nunca antes vista...
+        `
+         body.style.background = `#000 url("../images/ouro02.avif") no-repeat center / cover`
+       
+        if(entrarNaCaveerna.textContent === "Batalhar" ){
+            
+                let hp = Math.floor(Math.random() * 15) + 3 // gerando numero aleatorio entre 3 e 17
+                let ataque = (20 - hp);// calc do ataque do vilao
+                // add os valores de atributos do vilao
+                esqueletos[0].nome = "Rei Caveira"
+                esqueletos[0].img = "../images/vilao.gif",
+                esqueletos[0].hp = hp;
+                esqueletos[0].ataque = ataque;
+                esqueletos[0].vida = hp * 100;
+                esqueletos[0].dano = ataque * 10;
+            
+                const html = `
+                <div class="heroi">
+                    <img src=${esqueletos[0].img} alt="">
+                    <div class="area_xp">
+                        <h3>NOME</h3><span>${esqueletos[0].nome}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>VIDA</h3><span>${esqueletos[0].vida}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>HP</h3><span>${esqueletos[0].hp}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>ATAQUE</h3><span>${esqueletos[0].ataque}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>DANO</h3><span>${esqueletos[0].dano}</span>
+                    </div>
+                </div>
+            `
+            container_herois.innerHTML = "" // limpa a tela removendo o heroi e vilao 
+            hendleCards()// atualiza e renderiza  o heroi e o vilao na tela com as mudanças ocorridas
+            container_herois.innerHTML+= html // add o heroi e o vilao ja com os dados atualizado na tela 
+      
+            document.querySelector(".foca_de_ataque").style.display = "flex"
+            document.querySelector(".btns_ataques").style.display = "flex"
+            card_start_jogo.style.display = "none"
+            document.querySelector(".foca_de_ataque").textContent = ``
+            document.querySelector(".foca_de_ataque").style.display = "flex"
+        }else{
+            document.querySelector(".foca_de_ataque").style.display = "none"
+        }
+
+       
+        document.querySelector(".entrarNaCaveerna").textContent = "Batalhar"
+        document.querySelector(".explorar").style.display = "none"
+        document.querySelector(".vida_vilao").textContent = `${esqueletos[0].vida}`
+        document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
+
+    })
+    
+    document.querySelector(".explorar").addEventListener("click", ()=>{
+        console.log("foi")
+    })
+
 })
 
 
@@ -373,8 +465,18 @@ btn_vilao.addEventListener("click", ()=>{
     document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
 })
 
+  
 
 
+
+
+
+// const entrarNaCaveerna = document.querySelector(".entrarNaCaveerna")
+// const explorar = document.querySelector(".explorar")
+
+// entrarNaCaveerna.addEventListener("click", ()=> {
+//     console.log("foi")
+// })
 
 
 
