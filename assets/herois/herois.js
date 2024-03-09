@@ -25,7 +25,24 @@ let herois = [
         dano:0,
         img: "../images/heroi03.png"
     },
+    {
+        nome: "Murilo",
+        vida:0,
+        hp:0,
+        ataque:0,
+        dano:0,
+        img: "../images/ninja03.png"
+    },
+    {
+        nome: "Matheus",
+        vida:0,
+        hp:0,
+        ataque:0,
+        dano:0,
+        img: "../images/marteleiro.png"
+    },
 ]
+
 
 // array com  objeto  do vilao  esqueletos primeiro desafio
 let esqueletos = [
@@ -155,7 +172,8 @@ jogar_btn.addEventListener("click", ()=> {
                 
                 <button class="explorar">Explorar</button>
             </div>
-        ` 
+
+            ` 
         hendleHeroi(IdHeroi)// passando o valor do id para funçao que pega o heroi selecionado e criar o novo heroi e envia para o array herois
         
         // processo de manipulaçao dos elementos na tela
@@ -299,7 +317,7 @@ btn_heroi.addEventListener("click", ()=>{
         container_herois.innerHTML+= html // add o heroi e o vilao ja com os dados atualizado na tela 
     }else{
 
-        if(esqueletos[0].nome === "Esqueletrons"){
+        if(esqueletos[0].nome === "Esqueletrons"){//******* */
                  // else caso o vilao nao tenha mais pontos de vida maior que 0
             hendleCards()
 
@@ -318,14 +336,40 @@ btn_heroi.addEventListener("click", ()=>{
                 <h3>O que você quer fazer ?</h3>
                 <div>
                     <button class="entrarNaCaveerna">Entrar na Caveerna</button>
-                    
                     <button class="explorar">Explorar</button>
                 </div>
+                <div class="area_bonus">
+                    <p>Excolhar entre Receber Pontos de Vida ou De Dano</p>
+                    <section>
+                        <button class="pontosDeVida">+400 Pontos de Vida</button>
+                        <button class="dano">+200 pontos Dano</button>
+                    </section>
+                </div>
+                
             ` 
+            
+           
             document.querySelector(".entrarNaCaveerna").textContent = "Porta (A)"
             document.querySelector(".explorar").textContent = "Porta (B)"
             body.style.background = `#000 url("../images/portoes.jpg") no-repeat center / cover`
+            /// aqui/////////////////
+           const area_bonus = document.querySelector(".area_bonus")
+           const dano = document.querySelector(".area_bonus .dano")
+           const pontosDeVida = document.querySelector(".area_bonus .pontosDeVida")
 
+           dano.addEventListener("click", ()=>{
+                herois[0].dano = herois[0].dano + 200;
+                area_bonus.style.display = "none"
+                hendleCards()
+           })
+
+           pontosDeVida.addEventListener("click", ()=>{
+            herois[0].vida = herois[0].vida + 400;
+            area_bonus.style.display = "none"
+            hendleCards()
+        })
+            
+            
         }else if(esqueletos[0].nome === "Rei Caveira"){
             hendleCards()
             // add uma msg de vencedor
@@ -350,8 +394,13 @@ btn_heroi.addEventListener("click", ()=>{
             body.style.background = `#000 url("../images/reino.avif") no-repeat center / cover`
             
         }
+
+       
        
     }
+
+    
+
     // add infor de status de vidas do heroi e vilao
     document.querySelector(".vida_vilao").textContent = `${esqueletos[0].vida}`
     document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
