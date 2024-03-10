@@ -366,11 +366,10 @@ const btn_vilao = document.querySelector(".btn_vilao")
 let btn = true;
 
 // btn  heroi
-
     btn_heroi.addEventListener("click", ()=>{
 
         if(btn){
-            btn = false;
+            // btn = false;
 
             btn_vilao.style.opacity = "1"
             btn_heroi.style.opacity = "0.5"
@@ -422,7 +421,7 @@ let btn = true;
                 container_herois.innerHTML+= html // add o heroi e o vilao ja com os dados atualizado na tela 
 
             }else{
-
+                
                 if(esqueletos[0].nome === "Esqueletrons"){
                         // else caso o vilao nao tenha mais pontos de vida maior que 0
                     hendleCards()
@@ -453,37 +452,37 @@ let btn = true;
                         </div>
                         
                     ` 
+                        
+                    document.querySelector(".entrarNaCaveerna").textContent = "Porta (A)"
+                    const explorar = document.querySelector(".explorar")
+                    explorar.textContent = "Porta (B)"
+                    body.style.background = `#000 url("../images/portoes.jpg") no-repeat center / cover`
                     
-                document.querySelector(".entrarNaCaveerna").textContent = "Porta (A)"
-                const explorar = document.querySelector(".explorar")
-                explorar.textContent = "Porta (B)"
-                body.style.background = `#000 url("../images/portoes.jpg") no-repeat center / cover`
-                
-                const area_bonus = document.querySelector(".area_bonus")
-                const dano = document.querySelector(".area_bonus .dano")
-                const pontosDeVida = document.querySelector(".area_bonus .pontosDeVida")
-                
-                dano.addEventListener("click", ()=>{
-                        herois[0].dano = herois[0].dano + 50;
-                        area_bonus.style.display = "none"
-                        hendleCards()
-                })
+                    const area_bonus = document.querySelector(".area_bonus")
+                    const dano = document.querySelector(".area_bonus .dano")
+                    const pontosDeVida = document.querySelector(".area_bonus .pontosDeVida")
+                    
+                    dano.addEventListener("click", ()=>{
+                            herois[0].dano = herois[0].dano + 50;
+                            area_bonus.style.display = "none"
+                            hendleCards()
+                    })
 
-                pontosDeVida.addEventListener("click", ()=>{
+                    pontosDeVida.addEventListener("click", ()=>{
                         herois[0].vida = herois[0].vida + 200;
                         area_bonus.style.display = "none"
                         hendleCards()
                     })
 
-                explorar.addEventListener("click", () =>{
-                    document.querySelector(".legenda").textContent = `
-                        Você escolhe a Porta de Ferro, após atravessa-la tudo a sua volta desaparece, o infinito é seu novo horizonte... alguns minutos se passam até que você consegue escutar alguém chamando por seu nome... "Finalmente você conseguiu chegar até minha morada... Seus passos até aqui não foram fáceis, não espere nenhum tipo de alívio agora..."
-                    `
-                    body.style.background = `#000 url("../images/morada.avif") no-repeat center / cover`
-                    explorar.style.display = "none"
-                    entrarNaCaveerna.textContent = "Batalhar"
-                    
-                })
+                    explorar.addEventListener("click", () =>{
+                        document.querySelector(".legenda").textContent = `
+                            Você escolhe a Porta de Ferro, após atravessa-la tudo a sua volta desaparece, o infinito é seu novo horizonte... alguns minutos se passam até que você consegue escutar alguém chamando por seu nome... "Finalmente você conseguiu chegar até minha morada... Seus passos até aqui não foram fáceis, não espere nenhum tipo de alívio agora..."
+                        `
+                        body.style.background = `#000 url("../images/morada.avif") no-repeat center / cover`
+                        explorar.style.display = "none"
+                        entrarNaCaveerna.textContent = "Batalhar"
+                        
+                    })
                     
                     
                 }else if(esqueletos[0].nome === "Rei Caveira"){
@@ -572,7 +571,6 @@ let btn = true;
                     document.querySelector(".foca_de_ataque").style.display = "none"
                 }
 
-            
                 document.querySelector(".entrarNaCaveerna").textContent = "Batalhar"
                 document.querySelector(".explorar").style.display = "none"
                 document.querySelector(".vida_vilao").textContent = `${esqueletos[0].vida}`
@@ -583,69 +581,103 @@ let btn = true;
         };
     });
 
-    
-
 
 // logica vilao ataca
+btn_vilao.addEventListener("click", ()=>{
+        
+        // btn = true;
+        btn_vilao.style.opacity = "0.5"
+        btn_heroi.style.opacity = "1"
+    
+        let ataque = Math.floor(Math.random() * 4) // 
 
-    btn_vilao.addEventListener("click", ()=>{
-
-        if(!btn){
-            btn = true;
-            btn_vilao.style.opacity = "0.5"
-            btn_heroi.style.opacity = "1"
-            let ataque = Math.floor(Math.random() * 4) // 
-
-            // condicao caso ataque seja maior que 0 entra no if caso ao contrario  heroi defendeu 
-            if(ataque > 0){
-                herois[0].vida = herois[0].vida - esqueletos[0].dano // removendo pontos de vida do heroi
-
-                document.querySelector(".status_ataque").innerHTML = "E a vez do heroi Atacar!"
-                const html = `
-                    <div class="heroi">
-                        <img src=${esqueletos[0].img} alt="">
-                        <div class="area_xp">
-                            <h3>NOME</h3><span>${esqueletos[0].nome}</span>
-                        </div>
-                        <div class="area_xp">
-                            <h3>VIDA</h3><span>${esqueletos[0].vida}</span>
-                        </div>
-                        <div class="area_xp">
-                            <h3>HP</h3><span>${esqueletos[0].hp}</span>
-                        </div>
-                        <div class="area_xp">
-                            <h3>ATAQUE</h3><span>${esqueletos[0].ataque}</span>
-                        </div>
-                        <div class="area_xp">
-                            <h3>DANO</h3><span>${esqueletos[0].dano}</span>
-                        </div>
+        // condicao caso ataque seja maior que 0 entra no if caso ao contrario  heroi defendeu 
+        if(ataque > 0){
+            
+            herois[0].vida = herois[0].vida - esqueletos[0].dano // removendo pontos de vida do heroi
+            hendleCards()
+            document.querySelector(".status_ataque").innerHTML = "E a vez do heroi Atacar!"
+            const html = `
+                <div class="heroi">
+                    <img src=${esqueletos[0].img} alt="">
+                    <div class="area_xp">
+                        <h3>NOME</h3><span>${esqueletos[0].nome}</span>
                     </div>
-                `
-                container_herois.innerHTML = ""
-                hendleCards()
-                container_herois.innerHTML+= html
+                    <div class="area_xp">
+                        <h3>VIDA</h3><span>${esqueletos[0].vida}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>HP</h3><span>${esqueletos[0].hp}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>ATAQUE</h3><span>${esqueletos[0].ataque}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>DANO</h3><span>${esqueletos[0].dano}</span>
+                    </div>
+                </div>
+            `
+            container_herois.innerHTML = ""
+            hendleCards()
+            container_herois.innerHTML+= html
+            
+        }else{
+            document.querySelector(".status_ataque").innerHTML = "O Heroi defendeu o Ataque !"
+        }
 
-            }else{
-                document.querySelector(".status_ataque").innerHTML = "O Heroi defendeu o Ataque !"
-            }
-            document.querySelector(".vida_vilao").textContent = ` ${esqueletos[0].vida}`
-            document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
-        };
-    });
+        document.querySelector(".vida_vilao").textContent = ` ${esqueletos[0].vida}`
+        document.querySelector(".vida_heori").textContent = `${herois[0].vida}`
 
 
+    if(herois[0].vida <= 0 ){
+
+        document.querySelector(".btns_ataques").style.display = "none"
+        document.querySelector(".foca_de_ataque").style.display = "none"
+    
+        card_start_jogo.style.display = "flex"
+    
+        card_start_jogo.innerHTML = `
+            <h2>${herois[0].nome} Não foi dessa Vez!!</h2>
+            <div class="paragrafo">
+                <p class="legenda">
+                    O ${esqueletos[0].nome} Por quantos séculos mais <nome do inimigo> reinará nas sobras de nosso vale? Tudo fica escuro e quieto...
+                </p>
+            </div>
+            <div class="reload">
+                <h3>Game Over</h3>
+                <a  href="../herois/herois.html"><button class="entrarNaCaveerna">Jogar Novamente</button></button></a>
+            </div>
+        ` 
+        const html = `
+                <div class="heroi">
+                    <img src=${esqueletos[0].img} alt="">
+                    <div class="area_xp">
+                        <h3>NOME</h3><span>${esqueletos[0].nome}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>VIDA</h3><span>${esqueletos[0].vida}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>HP</h3><span>${esqueletos[0].hp}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>ATAQUE</h3><span>${esqueletos[0].ataque}</span>
+                    </div>
+                    <div class="area_xp">
+                        <h3>DANO</h3><span>${esqueletos[0].dano}</span>
+                    </div>
+                </div>
+            `
+            container_herois.innerHTML = ""
+            container_herois.innerHTML = html
+            container_herois.style.justifyContent = "center"
+         
+    }
   
+});
 
 
-
-
-
-// const entrarNaCaveerna = document.querySelector(".entrarNaCaveerna")
-// const explorar = document.querySelector(".explorar")
-
-// entrarNaCaveerna.addEventListener("click", ()=> {
-//     console.log("foi")
-// })
-
-
-
+   
+  // add uma msg de vencedor
+        
+              
